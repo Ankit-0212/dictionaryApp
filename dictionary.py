@@ -13,9 +13,14 @@ def translate(word):
         return data[word.upper()]
     elif len(get_close_matches(word,data.keys()))>0:
         #  print("Do you mean '%s' instead" %get_close_matches(word,data.keys())[0])
-         prompt="Do you mean '%s' instead\n" %get_close_matches(word,data.keys())[0]
+         prompt="PROMPT:\nDo you mean '%s' instead\n" %get_close_matches(word,data.keys())[0]
          result.insert(0.0,"press 'y' for YES and 'n' for NO :")
+
          result.insert(0.0,prompt)
+         pLabel=Label(win,text="Enter value for prompt ")
+         
+         pLabel.place(relx=0.3,rely=0.95, anchor=CENTER)
+         p.place(relx=0.7,rely=0.95, anchor=CENTER)
          decide=promtValue.get()
          
          if decide == "y":
@@ -60,9 +65,6 @@ e.place(relx=0.8,rely=0.1, anchor=CENTER)
 result = Text(win,height= 10,width=35,padx=10,pady=10)
 result.grid(row=5,column=1 )
 result.place(relx=0.5,rely=0.7, anchor=CENTER)
-pLabel=Label(win,text="Enter value for prompt ")
 p=Entry(win,textvariable=promtValue)
-pLabel.place(relx=0.3,rely=0.95, anchor=CENTER)
-p.place(relx=0.7,rely=0.95, anchor=CENTER)
 
 win.mainloop()
